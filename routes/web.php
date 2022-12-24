@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response('123');
 });
 
 Route::group(['namespace' => 'Main', 'prefix' => 'olegs'], function () {

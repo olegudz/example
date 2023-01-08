@@ -12,8 +12,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function posts() {
-
+    public function country()
+    {
+        return $this->hasOne(Country::class, 'user_id', 'id');
     }
 
     /**

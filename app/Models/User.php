@@ -17,12 +17,22 @@ class User extends Authenticatable
         return $this->hasOne(Country::class, 'user_id', 'id');
     }
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'user_id', 'id');
+    }
+
+    public function roles() {
+        return $this->belongsToMany(role::class, 'role_user', 'user_id', 'role_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    protected
+        $fillable = [
         'name',
         'email',
         'password',
@@ -33,7 +43,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
+    protected
+        $hidden = [
         'password',
         'remember_token',
     ];
@@ -43,7 +54,8 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    protected
+        $casts = [
         'email_verified_at' => 'datetime',
     ];
 }

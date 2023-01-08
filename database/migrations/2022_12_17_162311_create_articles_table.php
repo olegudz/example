@@ -19,7 +19,6 @@ class CreateArticlesTable extends Migration
             $table->string('name', 255);
             $table->text('text');
             $table->string('alias', 255);
-            $table->softDeletes();
         });
     }
 

@@ -18,6 +18,9 @@ Route::get('/', function () {
 });
 
 Route::get('/test_rel', 'CoreController@rel_1_1')->name('rel.r1_1');
+Route::get('/greed_load', 'CoreController@greed_load')->name('greed_load');
+Route::get('/edit_relation', 'CoreController@edit_relation')->name('edit_relation');
+Route::get('/request_validate', 'CoreController@request_validate')->name('request_validate');
 
 Route::group(['namespace' => 'Main', 'prefix' => 'olegs'], function () {
     Route::get('/', 'MyMainController')->name('post.index');

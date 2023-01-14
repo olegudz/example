@@ -42,7 +42,7 @@ class CoreController extends Controller
         dd(Article::all());
     }
 
-    public function request_validate() {
-
+    public function request_validate(Request $request, User $name) {
+        return view('default.contact',['title'=>'Contacts']);
     }
 }

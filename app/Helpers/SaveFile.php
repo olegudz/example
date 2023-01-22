@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Helpers\Contracts\SaveStr;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SaveEloquentORM implements SaveStr
 {
@@ -12,7 +13,8 @@ class SaveEloquentORM implements SaveStr
     {
         $obj = new self();
         $data = $obj->checkData($request->only(['name', 'text']));
-        $user->articles()->create($data);
+        $str = $data['name']. ' | '.$data['text'];
+        Storage::prepend('str.txt', $str);
 
     }
 

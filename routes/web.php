@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,7 @@ Route::post('/contact',['uses'=>'Admin\ContactController@store','as'=>'contact']
 
 Route::get('/test_rel', 'CoreController@rel_1_1')->name('rel.r1_1');
 Route::get('/greed_load', 'CoreController@greed_load')->name('greed_load');
+Route::get('/greed_load', 'CoreController@rel_1_1')->name('greed_load2');
 Route::get('/edit_relation', 'CoreController@edit_relation')->name('edit_relation');
 Route::get('/request_validate', 'CoreController@request_validate')->name('request_validate');
 
@@ -38,3 +40,13 @@ Route::group(['namespace' => 'Main', 'prefix' => 'olegs'], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function (){
+    Route::get('/', 'Admin\AdminController@show')->name('admin_index');
+    Route::get('/add/post', 'Admin\AdminPostController@create')->name('admin_add_post');
+});
+
+
+Route::get('/test', 'CoreController@test')->name('test');
+Route::get('/test_event', 'CoreController@test_event')->name('test_event');
